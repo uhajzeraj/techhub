@@ -8,5 +8,6 @@ final class PostsController
 {
     public function index()
     {
+        return view('posts');
     }
 }
