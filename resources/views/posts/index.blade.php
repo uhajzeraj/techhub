@@ -11,7 +11,7 @@
 <body>
     <h1>Hello world 👋🏻</h1>
 
-    <a href="/posts/first-post">
+    <a href="{{ route('posts.show', 'first-post') }}">
         <h3>My first post</h3>
     </a>
     <article>
@@ -32,7 +32,7 @@
         mollis purus. Vestibulum nec dui sem. Sed vitae nulla urna. Suspendisse ultricies tellus ac ligula mollis, nec
         ornare lacus sodales.
     </article>
-    <a href="/posts/first-post">
+    <a href="{{ route('posts.show', 'second-post') }}">
         <h3>My second post</h3>
     </a>
     <article>
@@ -53,7 +53,7 @@
         mollis purus. Vestibulum nec dui sem. Sed vitae nulla urna. Suspendisse ultricies tellus ac ligula mollis, nec
         ornare lacus sodales.
     </article>
-    <a href="/posts/first-post">
+    <a href="{{ route('posts.show', 'third-post') }}">
         <h3>My third post</h3>
     </a>
     <article>
