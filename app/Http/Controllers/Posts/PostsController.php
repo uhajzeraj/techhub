@@ -19,6 +19,10 @@ final class PostsController
 
         $postFile = "$postsPath/$postName.html";
 
+        if (!file_exists($postFile)) {
+            abort(404);
+        }
+
         $postContent = file_get_contents($postFile);
 
         return view('posts.show', [
