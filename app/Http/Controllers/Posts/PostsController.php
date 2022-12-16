@@ -13,9 +13,17 @@ final class PostsController
         ]);
     }
 
-    public function show(string $post)
+    public function show(string $postName)
     {
-        return view('posts.show');
+        $postsPath = storage_path('app/posts');
+
+        $postFile = "$postsPath/$postName.html";
+
+        $postContent = file_get_contents($postFile);
+
+        return view('posts.show', [
+            'post' => $postContent,
+        ]);
     }
 
     private function getPostsContent(): array
