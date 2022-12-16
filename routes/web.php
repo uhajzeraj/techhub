@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\Posts\PostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
