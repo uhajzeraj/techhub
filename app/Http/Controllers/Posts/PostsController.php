@@ -15,7 +15,7 @@ final class PostsController
         $postsContent = [];
 
         foreach ($postFiles as $postFile) {
-            $postsContent[] = file_get_contents($postsPath . '/' . $postFile);
+            $postsContent[] = file_get_contents("$postsPath/$postFile");
         }
 
         return view('posts.index');
