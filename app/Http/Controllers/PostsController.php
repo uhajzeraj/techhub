@@ -8,11 +8,11 @@ final class PostsController
 {
     public function index()
     {
-        return view('posts');
+        return view('posts.index');
     }
 
     public function show(string $post)
     {
-        return view('post');
+        return view('posts.show');
     }
 }
