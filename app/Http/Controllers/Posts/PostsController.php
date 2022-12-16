@@ -18,7 +18,9 @@ final class PostsController
             $postsContent[] = file_get_contents("$postsPath/$postFile");
         }
 
-        return view('posts.index');
+        return view('posts.index', [
+            'posts' => $postsContent,
+        ]);
     }
 
     public function show(string $post)
