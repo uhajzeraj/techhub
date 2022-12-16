@@ -28,6 +28,10 @@
         mollis purus. Vestibulum nec dui sem. Sed vitae nulla urna. Suspendisse ultricies tellus ac ligula mollis, nec
         ornare lacus sodales.
     </article>
+
+    <a href={{ route('posts.index') }}>
+        <h4>Go back</h4>
+    </a>
 </body>
 
 </html>
