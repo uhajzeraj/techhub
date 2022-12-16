@@ -10,6 +10,10 @@
 
 <body>
     <h1>Hello world 👋🏻</h1>
+
+    @foreach ($posts as $post)
+        {!! $post !!}
+    @endforeach
 </body>
 
 </html>
