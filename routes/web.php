@@ -16,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'home']);
+
 Route::get('/posts', [PostsController::class, 'index']);
-Route::get('/posts/first-post', [PostsController::class, 'showFirstPost']);
+Route::get('/posts/{post}', [PostsController::class, 'show']);

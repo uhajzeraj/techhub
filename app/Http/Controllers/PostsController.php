@@ -11,7 +11,7 @@ final class PostsController
         return view('posts');
     }
 
-    public function showFirstPost()
+    public function show()
     {
         return view('post');
     }
