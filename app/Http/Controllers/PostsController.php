@@ -10,4 +10,9 @@ final class PostsController
     {
         return view('posts');
     }
+
+    public function showFirstPost()
+    {
+        return view('post');
+    }
 }
