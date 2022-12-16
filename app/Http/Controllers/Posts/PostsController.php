@@ -8,6 +8,18 @@ final class PostsController
 {
     public function index()
     {
+        return view('posts.index', [
+            'posts' => $this->getPostsContent(),
+        ]);
+    }
+
+    public function show(string $post)
+    {
+        return view('posts.show');
+    }
+
+    private function getPostsContent(): array
+    {
         $postsPath = storage_path('app/posts');
 
         $postFiles = array_diff(scandir($postsPath), ['.', '..']);
@@ -18,13 +30,6 @@ final class PostsController
             $postsContent[] = file_get_contents("$postsPath/$postFile");
         }
 
-        return view('posts.index', [
-            'posts' => $postsContent,
-        ]);
-    }
-
-    public function show(string $post)
-    {
-        return view('posts.show');
+        return $postsContent;
     }
 }
