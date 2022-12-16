@@ -11,7 +11,9 @@
 <body>
     <h1>Hello world 👋🏻</h1>
 
-    <h3>My first post</h3>
+    <a href="/posts/first-post">
+        <h3>My first post</h3>
+    </a>
     <article>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eu arcu nec nulla vestibulum efficitur
         eget sit amet eros. Mauris eget efficitur libero. Mauris ac augue turpis. Donec ut gravida turpis, in vehicula
@@ -30,7 +32,9 @@
         mollis purus. Vestibulum nec dui sem. Sed vitae nulla urna. Suspendisse ultricies tellus ac ligula mollis, nec
         ornare lacus sodales.
     </article>
-    <h3>My second post</h3>
+    <a href="/posts/first-post">
+        <h3>My second post</h3>
+    </a>
     <article>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eu arcu nec nulla vestibulum efficitur
         eget sit amet eros. Mauris eget efficitur libero. Mauris ac augue turpis. Donec ut gravida turpis, in vehicula
@@ -49,7 +53,9 @@
         mollis purus. Vestibulum nec dui sem. Sed vitae nulla urna. Suspendisse ultricies tellus ac ligula mollis, nec
         ornare lacus sodales.
     </article>
-    <h3>My third post</h3>
+    <a href="/posts/first-post">
+        <h3>My third post</h3>
+    </a>
     <article>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eu arcu nec nulla vestibulum efficitur
         eget sit amet eros. Mauris eget efficitur libero. Mauris ac augue turpis. Donec ut gravida turpis, in vehicula
