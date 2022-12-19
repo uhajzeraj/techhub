@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Posts;
 
 use Illuminate\Support\Facades\Storage;
+use Spatie\YamlFrontMatter\Document;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 final class PostsController
@@ -31,6 +32,9 @@ final class PostsController
         ]);
     }
 
+    /**
+     * @return Document[]
+     */
     private function getPostsContent(): array
     {
         $postFiles = Storage::files('posts');
