@@ -29,21 +29,14 @@ final class PostsController
     {
         $postFile = "posts/{$postName}.html";
 
-        if (Cache::has($postFile)) {
-            $postContent = Cache::get($postFile);
+        $postContent = Cache::rememberForever($postFile, function () use ($postFile) {
+            if (!Storage::exists($postFile)) {
+                abort(404);
+            }
 
-            return view('posts.show', [
-                'post' => $postContent,
-            ]);
-        }
+            return YamlFrontMatter::parse(Storage::get($postFile));
+        });
 
-        if (!Storage::exists($postFile)) {
-            abort(404);
-        }
-
-        $postContent = YamlFrontMatter::parse(Storage::get($postFile));
-
-        Cache::put($postFile, $postContent);
 
         return view('posts.show', [
             'post' => $postContent,
