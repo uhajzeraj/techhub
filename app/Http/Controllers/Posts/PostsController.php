@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Posts;
 
+use Illuminate\Support\Facades\Storage;
+
 final class PostsController
 {
     public function index()
@@ -32,9 +34,9 @@ final class PostsController
 
     private function getPostsContent(): array
     {
-        $postsPath = storage_path('app/posts');
+        $postsPath = storage_path('app');
 
-        $postFiles = array_diff(scandir($postsPath), ['.', '..']);
+        $postFiles = Storage::files('posts');
 
         $postsContent = [];
 
