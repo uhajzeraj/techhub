@@ -37,7 +37,6 @@ final class PostsController
             return YamlFrontMatter::parse(Storage::get($postFile));
         });
 
-
         return view('posts.show', [
             'post' => $postContent,
         ]);
