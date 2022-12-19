@@ -34,14 +34,12 @@ final class PostsController
 
     private function getPostsContent(): array
     {
-        $postsPath = storage_path('app');
-
         $postFiles = Storage::files('posts');
 
         $postsContent = [];
 
         foreach ($postFiles as $postFile) {
-            $postsContent[] = file_get_contents("$postsPath/$postFile");
+            $postsContent[] = Storage::get($postFile);
         }
 
         return $postsContent;
