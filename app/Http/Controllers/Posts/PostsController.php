@@ -17,15 +17,13 @@ final class PostsController
 
     public function show(string $postName)
     {
-        $postsPath = storage_path('app/posts');
+        $postFile = "posts/{$postName}.html";
 
-        $postFile = "$postsPath/$postName.html";
-
-        if (!file_exists($postFile)) {
+        if (!Storage::exists($postFile)) {
             abort(404);
         }
 
-        $postContent = file_get_contents($postFile);
+        $postContent = Storage::get($postFile);
 
         return view('posts.show', [
             'post' => $postContent,
