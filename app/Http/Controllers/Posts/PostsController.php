@@ -12,8 +12,16 @@ final class PostsController
 {
     public function index()
     {
+        $posts = $this->getPostsContent();
+
+        usort(
+            $posts,
+            fn (Document $a, Document $b): int =>
+            $a->matter('date') <=> $b->matter('date'),
+        );
+
         return view('posts.index', [
-            'posts' => $this->getPostsContent(),
+            'posts' => $posts,
         ]);
     }
 
