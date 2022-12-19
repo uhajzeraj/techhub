@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Posts;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Spatie\YamlFrontMatter\Document;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -12,13 +13,11 @@ final class PostsController
 {
     public function index()
     {
-        $posts = $this->getPostsContent();
-
-        usort(
-            $posts,
-            fn (Document $a, Document $b): int =>
-            $a->matter('date') <=> $b->matter('date'),
-        );
+        $posts = $this->getPostsContent()
+            ->sort(
+                fn (Document $a, Document $b): int =>
+                $a->matter('date') <=> $b->matter('date'),
+            );
 
         return view('posts.index', [
             'posts' => $posts,
@@ -40,10 +39,7 @@ final class PostsController
         ]);
     }
 
-    /**
-     * @return Document[]
-     */
-    private function getPostsContent(): array
+    private function getPostsContent(): Collection
     {
         $postFiles = Storage::files('posts');
 
@@ -53,6 +49,6 @@ final class PostsController
             $postsContent[] = YamlFrontMatter::parse(Storage::get($postFile));
         }
 
-        return $postsContent;
+        return collect($postsContent);
     }
 }
