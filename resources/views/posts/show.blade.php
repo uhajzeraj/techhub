@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    {!! $post !!}
+    {!! $post->body() !!}
 
     <a href={{ route('posts.index') }}>
         <h4>Go back</h4>

@@ -12,7 +12,7 @@
     <h1>Hello world 👋🏻</h1>
 
     @foreach ($posts as $post)
-        {!! $post !!}
+        {!! $post->body() !!}
     @endforeach
 </body>
 

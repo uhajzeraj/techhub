@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Posts;
 
 use Illuminate\Support\Facades\Storage;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 final class PostsController
 {
@@ -23,7 +24,7 @@ final class PostsController
             abort(404);
         }
 
-        $postContent = Storage::get($postFile);
+        $postContent = YamlFrontMatter::parse(Storage::get($postFile));
 
         return view('posts.show', [
             'post' => $postContent,
@@ -37,7 +38,7 @@ final class PostsController
         $postsContent = [];
 
         foreach ($postFiles as $postFile) {
-            $postsContent[] = Storage::get($postFile);
+            $postsContent[] = YamlFrontMatter::parse(Storage::get($postFile));
         }
 
         return $postsContent;
