@@ -11,3 +11,11 @@ To install the dependencies, run:
 ```shell
 composer install
 ```
+
+To start the built-in development server, run:
+
+```shell
+php artisan serve
+```
+
+Alternatively, use something like [**Laravel Valet**](https://laravel.com/docs/valet).
