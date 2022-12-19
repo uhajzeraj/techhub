@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Posts;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Spatie\YamlFrontMatter\Document;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -28,11 +29,21 @@ final class PostsController
     {
         $postFile = "posts/{$postName}.html";
 
+        if (Cache::has($postFile)) {
+            $postContent = Cache::get($postFile);
+
+            return view('posts.show', [
+                'post' => $postContent,
+            ]);
+        }
+
         if (!Storage::exists($postFile)) {
             abort(404);
         }
 
         $postContent = YamlFrontMatter::parse(Storage::get($postFile));
+
+        Cache::put($postFile, $postContent);
 
         return view('posts.show', [
             'post' => $postContent,
