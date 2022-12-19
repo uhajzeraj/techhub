@@ -34,7 +34,7 @@ final class PostsController
                 abort(404);
             }
 
-            return YamlFrontMatter::parse(Storage::get($postFile));
+            return $this->parsePost($postFile);
         });
 
         return view('posts.show', [
@@ -49,9 +49,14 @@ final class PostsController
         $postsContent = [];
 
         foreach ($postFiles as $postFile) {
-            $postsContent[] = YamlFrontMatter::parse(Storage::get($postFile));
+            $postsContent[] = $this->parsePost($postFile);
         }
 
         return collect($postsContent);
+    }
+
+    private function parsePost(string $fileName): Document
+    {
+        return YamlFrontMatter::parse(Storage::get($fileName));
     }
 }
