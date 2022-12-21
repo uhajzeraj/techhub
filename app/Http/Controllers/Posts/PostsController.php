@@ -19,7 +19,9 @@ final class PostsController
 
     public function show(string $slug)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
+        $post = Post::query()
+            ->where('slug', $slug)
+            ->firstOrFail();
 
         return view('posts.show', [
             'post' => $post,
