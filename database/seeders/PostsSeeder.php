@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PostsSeeder extends Seeder
+final class PostsSeeder extends Seeder
 {
     public function run(): void
     {
