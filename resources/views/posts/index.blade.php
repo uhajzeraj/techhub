@@ -12,7 +12,10 @@
     <h1>Hello world 👋🏻</h1>
 
     @foreach ($posts as $post)
-        {!! $post->body() !!}
+        <a href="{{ route('posts.show', $post->slug) }}">
+            <h3>{{ $post->title }}</h3>
+        </a>
+        <article>{{ $post->excerpt }}</article>
     @endforeach
 </body>
 

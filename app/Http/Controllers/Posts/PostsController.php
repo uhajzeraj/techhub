@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Posts;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Spatie\YamlFrontMatter\Document;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -14,11 +15,7 @@ final class PostsController
 {
     public function index()
     {
-        $posts = $this->getPostsContent()
-            ->sort(
-                fn (Document $a, Document $b): int =>
-                $a->matter('date') <=> $b->matter('date'),
-            );
+        $posts = DB::table('posts')->get();
 
         return view('posts.index', [
             'posts' => $posts,
