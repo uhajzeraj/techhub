@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Posts;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 final class PostsController
 {
     public function index()
     {
-        $posts = DB::table('posts')->get();
+        $posts = Post::all();
 
         return view('posts.index', [
             'posts' => $posts,
@@ -19,9 +19,7 @@ final class PostsController
 
     public function show(string $slug)
     {
-        $post = DB::table('posts')
-            ->where('slug', $slug)
-            ->first();
+        $post = Post::where('slug', $slug)->first();
 
         return view('posts.show', [
             'post' => $post,
