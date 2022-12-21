@@ -10,6 +10,11 @@
 
 <body>
     <h1>{{ $post->title }}</h1>
+
+    <div style="margin-bottom: 2em;">
+        {{ $post->excerpt }}
+    </div>
+
     <article>
         {{ $post->content }}
     </article>
