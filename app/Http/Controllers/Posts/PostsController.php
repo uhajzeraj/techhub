@@ -22,20 +22,14 @@ final class PostsController
         ]);
     }
 
-    public function show(string $postName)
+    public function show(string $slug)
     {
-        $postFile = "posts/{$postName}.html";
-
-        $postContent = Cache::rememberForever($postFile, function () use ($postFile) {
-            if (!Storage::exists($postFile)) {
-                abort(404);
-            }
-
-            return $this->parsePost($postFile);
-        });
+        $post = DB::table('posts')
+            ->where('slug', $slug)
+            ->first();
 
         return view('posts.show', [
-            'post' => $postContent,
+            'post' => $post,
         ]);
     }
 

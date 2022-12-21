@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    {!! $post->body() !!}
+    <h1>{{ $post->title }}</h1>
+    <article>
+        {{ $post->content }}
+    </article>
 
     <a href={{ route('posts.index') }}>
         <h4>Go back</h4>
