@@ -27,4 +27,8 @@ final class PostsController
             'post' => $post,
         ]);
     }
+
+    public function store()
+    {
+    }
 }
