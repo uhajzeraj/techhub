@@ -11,7 +11,9 @@ final class PostsController
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::query()
+            ->latest('id')
+            ->get();
 
         return view('posts.index', [
             'posts' => $posts,
