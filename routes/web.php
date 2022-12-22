@@ -19,4 +19,4 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostsController::class, 'show'])->name('posts.show');
-Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
+Route::get('/store-post', [PostsController::class, 'store'])->name('posts.store');
