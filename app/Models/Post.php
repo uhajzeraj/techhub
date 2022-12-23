@@ -14,6 +14,8 @@ final class Post extends Model
 
     public function author()
     {
+        // Laravel uses the relationship method name to define the forein key column name
+        // In this case, it's going to be "author_id"
         return $this->belongsTo(User::class);
     }
 }
