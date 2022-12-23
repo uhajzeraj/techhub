@@ -23,6 +23,8 @@ final class PostsController
 
     public function show(Post $post)
     {
+        $post->load('author');
+
         return view('posts.show', [
             'post' => $post,
         ]);
