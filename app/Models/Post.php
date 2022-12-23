@@ -11,4 +11,9 @@ final class Post extends Model
 
     // protected $fillable = ['author_id', 'title', 'slug', 'excerpt', 'content'];
     // protected $guarded = [];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
