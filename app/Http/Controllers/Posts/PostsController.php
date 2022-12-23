@@ -23,13 +23,8 @@ final class PostsController
 
     public function show(Post $post)
     {
-        $author = User::query()
-            ->where('id', $post->author_id)
-            ->first();
-
         return view('posts.show', [
             'post' => $post,
-            'author' => $author,
         ]);
     }
 
