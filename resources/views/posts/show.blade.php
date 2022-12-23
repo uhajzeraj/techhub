@@ -11,6 +11,8 @@
 <body>
     <h1>{{ $post->title }}</h1>
 
+    <h3>Written by: {{ $author->name }}</h3>
+
     <div style="margin-bottom: 2em;">
         {{ $post->excerpt }}
     </div>
