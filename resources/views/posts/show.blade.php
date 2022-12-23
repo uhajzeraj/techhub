@@ -11,7 +11,7 @@
 <body>
     <h1>{{ $post->title }}</h1>
 
-    <h3>Written by: {{ $author->name }}</h3>
+    <h3>Written by: {{ $post->author->name }}</h3>
 
     <div style="margin-bottom: 2em;">
         {{ $post->excerpt }}
