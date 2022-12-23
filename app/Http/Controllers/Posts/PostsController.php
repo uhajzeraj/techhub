@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Posts;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 final class PostsController
@@ -22,8 +23,13 @@ final class PostsController
 
     public function show(Post $post)
     {
+        $author = User::query()
+            ->where('id', $post->author_id)
+            ->first();
+
         return view('posts.show', [
             'post' => $post,
+            'author' => $author,
         ]);
     }
 
