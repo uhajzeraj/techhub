@@ -12,7 +12,7 @@ final class PostsController
 {
     public function index()
     {
-        $posts = Post::query()
+        $posts = Post::with('author')
             ->latest('id')
             ->get();
 
