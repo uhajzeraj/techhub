@@ -14,6 +14,7 @@
     @foreach ($posts as $post)
         <a href="{{ route('posts.show', $post->slug) }}">
             <h3>{{ $post->title }}</h3>
+            <h4>Written by: {{ $post->author->name }}</h4>
         </a>
         <article>{{ $post->excerpt }}</article>
     @endforeach
