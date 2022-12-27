@@ -42,10 +42,15 @@ final class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts()
+    public function allPosts()
     {
         // Laravel uses the model name to define the forein key column name
         // In this case, it's going to be "user_id", that's why we need to override it
         return $this->hasMany(Post::class, 'author_id');
+    }
+
+    public function posts()
+    {
+        return $this->allPosts()->whereNotNull('published_at');
     }
 }
