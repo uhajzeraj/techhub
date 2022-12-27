@@ -18,4 +18,9 @@ final class Post extends Model
         // In this case, it's going to be "author_id"
         return $this->belongsTo(User::class);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_tags');
+    }
 }
