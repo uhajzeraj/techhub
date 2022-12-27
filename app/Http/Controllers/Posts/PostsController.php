@@ -12,7 +12,7 @@ final class PostsController
 {
     public function index()
     {
-        $posts = Post::with('author')
+        $posts = Post::with(['author', 'tags'])
             ->latest('id')
             ->get();
 
@@ -23,7 +23,7 @@ final class PostsController
 
     public function show(Post $post)
     {
-        $post->load('author');
+        $post->load(['author', 'tags']);
 
         return view('posts.show', [
             'post' => $post,
