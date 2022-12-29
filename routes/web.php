@@ -20,6 +20,5 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post:slug}', [PostsController::class, 'show'])->name('posts.show');
-Route::get('/store-post', [PostsController::class, 'store'])->name('posts.store');
 
 Route::get('authors/{author:username}', GetAuthorController::class)->name('authors.show');
