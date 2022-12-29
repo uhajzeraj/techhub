@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Posts;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Support\Str;
 
 final class PostsController
@@ -35,7 +34,7 @@ final class PostsController
     {
         $words = fake()->words(6, true);
 
-        $post = Post::create([
+        Post::create([
             'author_id' => 5,
             'title' => ucfirst($words),
             'slug' => Str::slug($words),
