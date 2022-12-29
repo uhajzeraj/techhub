@@ -23,4 +23,9 @@ final class Post extends Model
     {
         return $this->belongsToMany(Tag::class, 'post_tags');
     }
+
+    public function scopeWherePublished($query)
+    {
+        $query->whereNotNull('published_at');
+    }
 }

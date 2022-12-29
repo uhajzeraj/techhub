@@ -12,7 +12,7 @@ final class PostsController
     public function index()
     {
         $posts = Post::with(['author', 'tags'])
-            ->whereNotNull('published_at')
+            ->wherePublished()
             ->latest('id')
             ->get();
 
