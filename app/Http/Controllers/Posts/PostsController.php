@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Posts;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Str;
 
@@ -23,7 +24,11 @@ final class PostsController
 
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+
+        return view('posts.create', [
+            'categories' => $categories,
+        ]);
     }
 
     public function show(Post $post)

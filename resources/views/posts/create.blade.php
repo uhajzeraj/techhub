@@ -11,12 +11,23 @@
 <body>
     <h3>Add a new post</h3>
     <form method="post" action="{{ route('posts.store') }}">
+        <label for="category">Category: </label>
+        <select name="category_id" id="category">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+        </br>
+
         <label for="title">Title: </label>
         <input type="text" name="title" id="title" /><br />
+
         <label for="excerpt">Excerpt: </label>
         <textarea name="excerpt" id="excerpt"></textarea><br />
+
         <label for="content">Content: </label>
         <textarea name="content" id="content"></textarea><br />
+
         <button type="submit">Save post</button>
     </form>
 </body>
