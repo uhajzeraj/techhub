@@ -11,6 +11,7 @@
 <body>
     <h3>Add a new post</h3>
     <form method="post" action="{{ route('posts.store') }}">
+        @csrf
         <label for="category">Category: </label>
         <select name="category_id" id="category">
             @foreach ($categories as $category)
