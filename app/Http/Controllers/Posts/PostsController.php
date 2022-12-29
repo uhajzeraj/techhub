@@ -37,16 +37,5 @@ final class PostsController
 
     public function store()
     {
-        $words = fake()->words(6, true);
-
-        Post::create([
-            'author_id' => 5,
-            'title' => ucfirst($words),
-            'slug' => Str::slug($words),
-            'excerpt' => fake()->paragraphs(3, true),
-            'content' => fake()->paragraphs(8, true),
-        ]);
-
-        return redirect()->route('posts.index');
     }
 }
