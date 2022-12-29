@@ -21,6 +21,11 @@ final class PostsController
         ]);
     }
 
+    public function create()
+    {
+        return view('posts.create');
+    }
+
     public function show(Post $post)
     {
         $post->load(['author', 'tags']);
