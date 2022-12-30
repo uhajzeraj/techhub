@@ -58,21 +58,12 @@ final class PostsController
                 ->withInput();
         }
 
-        $title = $request->post('title');
-        $excerpt = $request->post('excerpt');
-        $content = $request->post('content');
-        $categoryId = $request->post('category_id');
-
-        $post = new Post();
-
-        $post->title = $title;
-        $post->slug = fake()->slug();
-        $post->excerpt = $excerpt;
-        $post->content = $content;
-        $post->category_id = $categoryId;
-        $post->author_id = User::where('role', 'author')->first()->id;
-
-        $post->save();
+        $data = array_merge($validator->validated(), [
+            'slug' => fake()->slug(),
+            'author_id' => User::where('role', 'author')->first()->id,
+        ]);
+        
+        Post::create($data);
 
         return redirect()->route('posts.index');
     }
