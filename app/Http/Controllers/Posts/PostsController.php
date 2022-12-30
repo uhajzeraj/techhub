@@ -52,11 +52,7 @@ final class PostsController
             'category_id' => ['required', Rule::exists('categories', 'id')],
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+        $validator->validate();
 
         $data = array_merge($validator->validated(), [
             'slug' => fake()->slug(),
