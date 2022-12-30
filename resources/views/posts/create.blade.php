@@ -21,13 +21,13 @@
         </br>
 
         <label for="title">Title: </label>
-        <input type="text" name="title" id="title" /><br />
+        <input type="text" name="title" id="title" value="{{ old('title') }}" /><br />
 
         <label for="excerpt">Excerpt: </label>
-        <textarea name="excerpt" id="excerpt"></textarea><br />
+        <textarea name="excerpt" id="excerpt">{{ old('excerpt') }}</textarea><br />
 
         <label for="content">Content: </label>
-        <textarea name="content" id="content"></textarea><br />
+        <textarea name="content" id="content">{{ old('content') }}</textarea><br />
 
         <button type="submit">Save post</button>
     </form>
