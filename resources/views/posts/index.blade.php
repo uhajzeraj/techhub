@@ -20,6 +20,12 @@
         </a>
         <article>{{ $post->excerpt }}</article>
     @endforeach
+
+    @if (session('success'))
+        <script>
+            alert('{{ session('success') }}');
+        </script>
+    @endif
 </body>
 
 </html>
