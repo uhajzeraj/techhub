@@ -49,6 +49,12 @@ final class PostsController
             'title' => ['required', 'string', 'min:5', 'max:100'],
         ]);
 
+        if ($validator->fails()) {
+            return redirect()->route('posts.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $title = $request->post('title');
         $excerpt = $request->post('excerpt');
         $content = $request->post('content');
