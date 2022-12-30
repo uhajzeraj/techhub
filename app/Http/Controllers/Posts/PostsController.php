@@ -58,6 +58,8 @@ final class PostsController
 
         Post::create($data);
 
-        return redirect()->route('posts.index');
+        return redirect()
+            ->route('posts.index')
+            ->with('success', 'Post was successfully created!');
     }
 }
