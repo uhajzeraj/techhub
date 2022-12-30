@@ -22,6 +22,11 @@
 
         <label for="title">Title: </label>
         <input type="text" name="title" id="title" value="{{ old('title') }}" /><br />
+        @error('title')
+            <div style="color: red">
+                {{ $message }}
+            </div>
+        @enderror
 
         <label for="excerpt">Excerpt: </label>
         <textarea name="excerpt" id="excerpt">{{ old('excerpt') }}</textarea><br />
