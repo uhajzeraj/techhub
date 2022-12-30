@@ -19,6 +19,11 @@
             @endforeach
         </select>
         </br>
+        @error('category_id')
+            <div style="color: red">
+                {{ $message }}
+            </div>
+        @enderror
 
         <label for="title">Title: </label>
         <input type="text" name="title" id="title" value="{{ old('title') }}" /><br />
@@ -30,9 +35,19 @@
 
         <label for="excerpt">Excerpt: </label>
         <textarea name="excerpt" id="excerpt">{{ old('excerpt') }}</textarea><br />
+        @error('excerpt')
+            <div style="color: red">
+                {{ $message }}
+            </div>
+        @enderror
 
         <label for="content">Content: </label>
         <textarea name="content" id="content">{{ old('content') }}</textarea><br />
+        @error('content')
+            <div style="color: red">
+                {{ $message }}
+            </div>
+        @enderror
 
         <button type="submit">Save post</button>
     </form>
