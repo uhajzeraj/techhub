@@ -53,7 +53,7 @@ final class PostsController
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('posts.create')
+            return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
