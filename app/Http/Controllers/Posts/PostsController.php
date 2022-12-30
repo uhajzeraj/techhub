@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 final class PostsController
@@ -44,6 +45,10 @@ final class PostsController
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'title' => ['required', 'string', 'min:5', 'max:100'],
+        ]);
+
         $title = $request->post('title');
         $excerpt = $request->post('excerpt');
         $content = $request->post('content');
