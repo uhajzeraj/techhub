@@ -5,11 +5,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') . ' - Posts' }}</title>
 </head>
 
 <body>
-    <h1>Hello world 👋🏻</h1>
+    <ul>
+        <li><a href="/">Homepage</a></li>
+        <li><a href="{{ route('posts.index') }}">Posts</a></li>
+    </ul>
+    <h1>{{ config('app.name') . ' - Posts' }}</h1>
 
     @foreach ($posts as $post)
         <a href="{{ route('posts.show', $post->slug) }}">

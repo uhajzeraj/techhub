@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <ul>
+        <li><a href="/">Homepage</a></li>
+        <li><a href="{{ route('posts.index') }}">Posts</a></li>
+    </ul>
+
     <h1>{{ $post->title }}</h1>
 
     <h3>Written by: {{ $post->author->name }}</h3>
