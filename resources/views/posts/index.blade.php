@@ -6,6 +6,6 @@
     <h1>{{ config('app.name') . ' - Posts' }}</h1>
 
     @foreach ($posts as $post)
-        <x-post :post="$post"></x-post>
+        <x-post :$post /> {{-- or <x-post :post="$post"></x-post>  --}}
     @endforeach
 @endsection
