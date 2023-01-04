@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ config('app.name') . ' - Posts' }}</title>
-</head>
+@section('title', config('app.name') . ' - Posts')
 
-<body>
-    <ul>
-        <li><a href="/">Homepage</a></li>
-        <li><a href="{{ route('posts.index') }}">Posts</a></li>
-    </ul>
+@section('content')
     <h1>{{ config('app.name') . ' - Posts' }}</h1>
 
     @foreach ($posts as $post)
@@ -24,12 +14,4 @@
         </a>
         <article>{{ $post->excerpt }}</article>
     @endforeach
-
-    @if (session('success'))
-        <script>
-            alert('{{ session('success') }}');
-        </script>
-    @endif
-</body>
-
-</html>
+@endsection
