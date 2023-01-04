@@ -17,11 +17,7 @@
 
     @yield('content')
 
-    @if (session('success'))
-        <script>
-            alert('{{ session('success') }}');
-        </script>
-    @endif
+    @include('components._flash-message')
 </body>
 
 </html>
