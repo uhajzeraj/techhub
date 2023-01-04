@@ -20,7 +20,7 @@
 
     @yield('content')
 
-    @include('components._flash-message')
+    <x-flash-message />
 </body>
 
 </html>
