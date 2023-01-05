@@ -13,8 +13,8 @@
     @stack('stylesheets')
 </head>
 
-<body>
-    <ul>
+<body class="text-gray-900">
+    <ul class="w-full bg-sky-400 flex text-white py-4 mb-4 gap-4 justify-end px-8">
         <li><a href="/">Homepage</a></li>
         <li><a href="{{ route('posts.index') }}">Posts</a></li>
     </ul>
