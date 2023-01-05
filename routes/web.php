@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Authors\GetAuthorController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Posts\PostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::view('/', 'welcome')->name('home');
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
