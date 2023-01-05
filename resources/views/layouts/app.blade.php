@@ -9,6 +9,7 @@
     @yield('meta-tags')
 
     @stack('scripts')
+    @vite('resources/css/app.css')
     @stack('stylesheets')
 </head>
 
