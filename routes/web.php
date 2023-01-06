@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Authors\GetAuthorController;
+use App\Http\Controllers\Authors\GetSingleAuthorController;
 use App\Http\Controllers\Posts\PostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +22,4 @@ Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.cre
 Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
 Route::get('/posts/{post:slug}', [PostsController::class, 'show'])->name('posts.show');
 
-Route::get('authors/{author:username}', GetAuthorController::class)->name('authors.show');
+Route::get('authors/{author:username}', GetSingleAuthorController::class)->name('authors.show');

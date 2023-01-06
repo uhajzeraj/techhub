@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Authors;
 
 use App\Models\User;
 
-final class GetAuthorController
+final class GetSingleAuthorController
 {
     public function __invoke(User $author)
     {
