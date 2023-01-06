@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ 'Add a new post - ' . config('app.name') }}</title>
-</head>
+@section('title', 'Add a new post - ' . config('app.name'))
 
-<body>
+@section('content')
     <h3>Add a new post</h3>
     <form method="post" action="{{ route('posts.store') }}">
         @csrf
         <label for="category">Category: </label>
         <select name="category_id" id="category">
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}"
-                    {{ old('category_id') === (string) $category->id ? 'selected' : '' }}>
+                <option value="{{ $category->id }}" {{ old('category_id') === (string) $category->id ? 'selected' : '' }}>
                     {{ $category->name }}
                 </option>
             @endforeach
@@ -54,6 +47,5 @@
 
         <button type="submit">Save post</button>
     </form>
-</body>
 
-</html>
+@endsection
