@@ -14,7 +14,7 @@ final class PostsController
 {
     public function index()
     {
-        $posts = Post::with(['author', 'tags'])
+        $posts = Post::with(['author', 'tags', 'category'])
             ->wherePublished()
             ->latest('id')
             ->get();
