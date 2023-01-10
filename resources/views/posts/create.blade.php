@@ -1,15 +1,13 @@
-@extends('layouts.app')
-
-@section('title', 'Add a new post - ' . config('app.name'))
-
-@section('content')
+<x-layouts.app>
+    <x-slot:title>{{ 'Add a new post - ' . config('app.name') }}</x-slot:title>
     <h3>Add a new post</h3>
     <form method="post" action="{{ route('posts.store') }}">
         @csrf
         <label for="category">Category: </label>
         <select name="category_id" id="category">
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ old('category_id') === (string) $category->id ? 'selected' : '' }}>
+                <option value="{{ $category->id }}"
+                    {{ old('category_id') === (string) $category->id ? 'selected' : '' }}>
                     {{ $category->name }}
                 </option>
             @endforeach
@@ -47,5 +45,4 @@
 
         <button type="submit">Save post</button>
     </form>
-
-@endsection
+</x-layouts.app>

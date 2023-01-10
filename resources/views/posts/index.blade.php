@@ -22,7 +22,7 @@
                                 <p class="text-sm font-medium text-indigo-600">
                                     <a href="#" class="hover:underline">{{ $post->category->name }}</a>
                                 </p>
-                                <a href="#" class="mt-2 block">
+                                <a href="{{ route('posts.show', $post->slug) }}" class="mt-2 block">
                                     <p class="text-xl font-semibold text-gray-900">{{ $post->title }}</p>
                                     <p class="mt-3 text-base text-gray-500">{{ $post->excerpt }}</p>
                                 </a>

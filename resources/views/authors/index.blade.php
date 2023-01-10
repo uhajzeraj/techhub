@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-@section('title', 'Authors - ' . config('app.name'))
-
-@section('content')
+<x-layouts.app>
+    <x-slot:title>Authors - {{ config('app.name') }}</x-slot:title>
     <h1>{{ config('app.name') . ' - Authors' }}</h1>
-@endsection
+</x-layouts.app>

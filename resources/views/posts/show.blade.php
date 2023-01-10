@@ -1,8 +1,5 @@
-@extends('layouts.app')
-
-@section('title', $post->title . ' - ' . config('app.name'))
-
-@section('content')
+<x-layouts.app>
+    <x-slot:title>{{ $post->title . ' - ' . config('app.name') }}</x-slot:title>
     <h1>{{ $post->title }}</h1>
 
     <h3>Written by:
@@ -22,4 +19,4 @@
     <a href={{ route('posts.index') }}>
         <h4>Go back</h4>
     </a>
-@endsection
+</x-layouts.app>

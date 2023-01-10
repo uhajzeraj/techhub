@@ -1,8 +1,5 @@
-@extends('layouts.app')
-
-@section('title', $author->name . ' - ' . config('app.name'))
-
-@section('content')
+<x-layouts.app>
+    <x-slot:title>{{ $author->name . ' - ' . config('app.name') }}</x-slot:title>
     <h1>{{ $author->name }}</h1>
 
     <h2>Posts:</h2>
@@ -12,4 +9,4 @@
         </a>
         <article>{{ $post->excerpt }}</article>
     @endforeach
-@endsection
+</x-layouts.app>
