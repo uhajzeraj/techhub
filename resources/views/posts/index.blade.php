@@ -1,8 +1,4 @@
-@extends('layouts.app')
-
-@section('title', config('app.name') . ' - Posts')
-
-@section('content')
+<x-layouts.app>
     <div class="relative bg-gray-50 px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
         <div class="absolute inset-0">
             <div class="h-1/3 bg-white sm:h-2/3"></div>
@@ -59,5 +55,4 @@
             </div>
         </div>
     </div>
-
-@endsection
+</x-layouts.app>
