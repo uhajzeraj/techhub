@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-50">
 
 <head>
     <meta charset="UTF-8" />
@@ -12,7 +12,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="text-gray-900">
+<body class="text-gray-900 h-full">
     <x-layouts.navbar></x-layouts.navbar>
 
     {{ $slot }}
