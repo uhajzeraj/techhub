@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authors\GetAuthorsController;
 use App\Http\Controllers\Authors\GetSingleAuthorController;
+use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Posts\PostsController;
 use App\Http\Controllers\Register\RegisterController;
@@ -22,6 +23,8 @@ Route::redirect('/', '/posts');
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'store'])->name('login');
 Route::post('/logout', LogoutController::class)->name('logout');
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
