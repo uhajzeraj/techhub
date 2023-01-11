@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/posts');
 
 Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
 Route::post('/logout', LogoutController::class)->name('logout');
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
