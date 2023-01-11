@@ -49,6 +49,10 @@
                 </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                @if (Auth::check())
+                    <span class="text-sm text-gray-600">Welcome back, {{ Auth::user()->name }}</span>
+                @endif
+
                 <button type="button"
                     class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     <span class="sr-only">View notifications</span>
