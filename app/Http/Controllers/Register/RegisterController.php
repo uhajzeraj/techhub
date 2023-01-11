@@ -35,6 +35,8 @@ final class RegisterController
 
         Auth::login($user);
 
+        $request->session()->regenerate();
+
         return redirect()
             ->route('posts.index')
             ->with('success', 'User was created');
