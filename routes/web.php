@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authors\GetAuthorsController;
 use App\Http\Controllers\Authors\GetSingleAuthorController;
 use App\Http\Controllers\Posts\PostsController;
+use App\Http\Controllers\Register\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/posts');
+
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
