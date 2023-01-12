@@ -5,6 +5,7 @@ use App\Http\Controllers\Authors\GetSingleAuthorController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Posts\PostsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Register\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/posts');
+Route::get('/', fn () => view('welcome'));
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
@@ -34,3 +35,15 @@ Route::get('/posts/{post:slug}', [PostsController::class, 'show'])->name('posts.
 
 Route::get('authors', GetAuthorsController::class)->name('authors.index');
 Route::get('authors/{author:username}', GetSingleAuthorController::class)->name('authors.show');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
