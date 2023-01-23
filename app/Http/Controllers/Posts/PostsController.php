@@ -12,12 +12,20 @@ use Illuminate\Validation\Rule;
 
 final class PostsController
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with(['author', 'tags', 'category'])
+        $postsQuery = Post::with(['author', 'tags', 'category'])
             ->wherePublished()
-            ->latest('id')
-            ->simplePaginate(5);
+            ->latest('id');
+
+        if ($request->has('search')) {
+            $postsQuery->where('title', 'LIKE', "%{$request->get('search')}%")
+                ->orWhere('content', 'LIKE', "%{$request->get('search')}%");
+        }
+
+        $posts = $postsQuery
+            ->simplePaginate(5)
+            ->withQueryString();
 
         return view('posts.index', [
             'posts' => $posts,
