@@ -19,8 +19,10 @@ final class PostsController
             ->latest('id');
 
         if ($request->has('search')) {
-            $postsQuery->where('title', 'LIKE', "%{$request->get('search')}%")
-                ->orWhere('content', 'LIKE', "%{$request->get('search')}%");
+            $postsQuery->where(function ($query) use ($request) {
+                $query->where('title', 'LIKE', "%{$request->get('search')}%")
+                    ->orWhere('content', 'LIKE', "%{$request->get('search')}%");
+            });
         }
 
         $posts = $postsQuery
