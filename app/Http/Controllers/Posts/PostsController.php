@@ -17,7 +17,7 @@ final class PostsController
         $posts = Post::with(['author', 'tags', 'category'])
             ->wherePublished()
             ->latest('id')
-            ->get();
+            ->paginate(5);
 
         return view('posts.index', [
             'posts' => $posts,
