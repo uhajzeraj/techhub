@@ -42,8 +42,7 @@ final class Post extends Model
 
         $query->where(fn ($query) => $query->where('title', 'LIKE', "%{$searchTerm}%")
             ->orWhere('content', 'LIKE', "%{$searchTerm}%")
-            ->orWhereIn('author_id', fn ($query) => $query->select('id')
-                ->from('users')
+            ->orWhereHas('author', fn ($query) => $query
                 ->where('name', 'LIKE', "%{$searchTerm}%")));
     }
 
