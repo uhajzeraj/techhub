@@ -46,4 +46,12 @@ final class Post extends Model
                 ->from('users')
                 ->where('name', 'LIKE', "%{$searchTerm}%")));
     }
+
+    public function scopeFilterByCategory($query, ?string $categoryId)
+    {
+        $query->when(
+            $categoryId !== null,
+            fn ($query) => $query->where('category_id', $categoryId)
+        );
+    }
 }
