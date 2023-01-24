@@ -9,13 +9,21 @@
                 <p class="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">Lorem ipsum dolor sit amet consectetur,
                     adipisicing elit. Ipsa libero labore natus atque, ducimus sed.</p>
             </div>
-            <div>
+            <div class="flex w-full">
                 <label for="search" class="block text-sm font-medium text-gray-700">Search posts</label>
                 <form method="GET" action="{{ route('posts.index') }}">
                     <div class="relative mt-1 flex items-center">
-                        <input type="text" value="{{ request()->get('search', '') }}" name="search" id="search" class="block w-full rounded-md border-gray-300 pr-12 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <select name="category"
+                            class="block w-full rounded-md border-gray-300 pr-12 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <input type="text" value="{{ request()->get('search', '') }}" name="search" id="search"
+                            class="block w-full rounded-md border-gray-300 pr-12 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                         <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
-                        <kbd class="inline-flex items-center rounded border border-gray-200 px-2 font-sans text-sm font-medium text-gray-400">⌘K</kbd>
+                            <kbd
+                                class="inline-flex items-center rounded border border-gray-200 px-2 font-sans text-sm font-medium text-gray-400">⌘K</kbd>
                         </div>
                     </div>
                 </form>
