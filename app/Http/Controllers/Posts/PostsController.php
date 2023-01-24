@@ -19,11 +19,15 @@ final class PostsController
             ->latest('posts.id');
 
         if ($request->has('search')) {
-            $postsQuery->join('users', 'users.id', '=', 'posts.author_id')
+            $postsQuery
                 ->where(function ($query) use ($request) {
                     $query->where('title', 'LIKE', "%{$request->get('search')}%")
                         ->orWhere('content', 'LIKE', "%{$request->get('search')}%")
-                        ->orWhere('name', 'LIKE', "%{$request->get('search')}%");
+                        ->orWhereIn('author_id', function ($query) use ($request) {
+                            $query->select('id')
+                                ->from('users')
+                                ->where('name', 'LIKE', "%{$request->get('search')}%");
+                        });
                 });
         }
 
