@@ -40,14 +40,10 @@ final class Post extends Model
             return;
         }
 
-        $query->where(function ($query) use ($searchTerm) {
-            $query->where('title', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('content', 'LIKE', "%{$searchTerm}%")
-                ->orWhereIn('author_id', function ($query) use ($searchTerm) {
-                    $query->select('id')
-                        ->from('users')
-                        ->where('name', 'LIKE', "%{$searchTerm}%");
-                });
-        });
+        $query->where(fn ($query) => $query->where('title', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('content', 'LIKE', "%{$searchTerm}%")
+            ->orWhereIn('author_id', fn ($query) => $query->select('id')
+                ->from('users')
+                ->where('name', 'LIKE', "%{$searchTerm}%")));
     }
 }
