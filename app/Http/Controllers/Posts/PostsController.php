@@ -23,6 +23,7 @@ final class PostsController
 
         return view('posts.index', [
             'posts' => $posts,
+            'categories' => Category::all(),
         ]);
     }
 
