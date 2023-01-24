@@ -36,16 +36,18 @@ final class Post extends Model
 
     public function scopeFilterBySearchTerm($query, ?string $searchTerm)
     {
-        if ($searchTerm !== null) {
-            $query->where(function ($query) use ($searchTerm) {
-                $query->where('title', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('content', 'LIKE', "%{$searchTerm}%")
-                    ->orWhereIn('author_id', function ($query) use ($searchTerm) {
-                        $query->select('id')
-                            ->from('users')
-                            ->where('name', 'LIKE', "%{$searchTerm}%");
-                    });
-            });
+        if ($searchTerm === null) {
+            return;
         }
+
+        $query->where(function ($query) use ($searchTerm) {
+            $query->where('title', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('content', 'LIKE', "%{$searchTerm}%")
+                ->orWhereIn('author_id', function ($query) use ($searchTerm) {
+                    $query->select('id')
+                        ->from('users')
+                        ->where('name', 'LIKE', "%{$searchTerm}%");
+                });
+        });
     }
 }
