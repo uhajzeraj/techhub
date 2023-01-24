@@ -14,24 +14,10 @@ final class PostsController
 {
     public function index(Request $request)
     {
-        $postsQuery = Post::with(['author', 'tags', 'category'])
+        $posts = Post::with(['author', 'tags', 'category'])
             ->wherePublished()
-            ->latest('posts.id');
-
-        if ($request->has('search')) {
-            $postsQuery
-                ->where(function ($query) use ($request) {
-                    $query->where('title', 'LIKE', "%{$request->get('search')}%")
-                        ->orWhere('content', 'LIKE', "%{$request->get('search')}%")
-                        ->orWhereIn('author_id', function ($query) use ($request) {
-                            $query->select('id')
-                                ->from('users')
-                                ->where('name', 'LIKE', "%{$request->get('search')}%");
-                        });
-                });
-        }
-
-        $posts = $postsQuery
+            ->filterBySearchTerm()
+            ->latest('posts.id')
             ->simplePaginate(5)
             ->withQueryString();
 
