@@ -16,13 +16,15 @@ final class PostsController
     {
         $postsQuery = Post::with(['author', 'tags', 'category'])
             ->wherePublished()
-            ->latest('id');
+            ->latest('posts.id');
 
         if ($request->has('search')) {
-            $postsQuery->where(function ($query) use ($request) {
-                $query->where('title', 'LIKE', "%{$request->get('search')}%")
-                    ->orWhere('content', 'LIKE', "%{$request->get('search')}%");
-            });
+            $postsQuery->join('users', 'users.id', '=', 'posts.author_id')
+                ->where(function ($query) use ($request) {
+                    $query->where('title', 'LIKE', "%{$request->get('search')}%")
+                        ->orWhere('content', 'LIKE', "%{$request->get('search')}%")
+                        ->orWhere('name', 'LIKE', "%{$request->get('search')}%");
+                });
         }
 
         $posts = $postsQuery
