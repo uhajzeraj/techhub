@@ -34,18 +34,16 @@ final class Post extends Model
         $query->whereNotNull('published_at');
     }
 
-    public function scopeFilterBySearchTerm($query)
+    public function scopeFilterBySearchTerm($query, ?string $searchTerm)
     {
-        $request = request();
-
-        if ($request->has('search')) {
-            $query->where(function ($query) use ($request) {
-                $query->where('title', 'LIKE', "%{$request->get('search')}%")
-                    ->orWhere('content', 'LIKE', "%{$request->get('search')}%")
-                    ->orWhereIn('author_id', function ($query) use ($request) {
+        if ($searchTerm !== null) {
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('title', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('content', 'LIKE', "%{$searchTerm}%")
+                    ->orWhereIn('author_id', function ($query) use ($searchTerm) {
                         $query->select('id')
                             ->from('users')
-                            ->where('name', 'LIKE', "%{$request->get('search')}%");
+                            ->where('name', 'LIKE', "%{$searchTerm}%");
                     });
             });
         }

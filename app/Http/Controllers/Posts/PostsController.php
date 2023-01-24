@@ -16,7 +16,7 @@ final class PostsController
     {
         $posts = Post::with(['author', 'tags', 'category'])
             ->wherePublished()
-            ->filterBySearchTerm()
+            ->filterBySearchTerm($request->get('search'))
             ->latest('posts.id')
             ->simplePaginate(5)
             ->withQueryString();
