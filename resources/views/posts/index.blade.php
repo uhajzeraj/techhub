@@ -13,14 +13,7 @@
                 <label for="search" class="block text-sm font-medium text-gray-700">Search posts</label>
                 <form method="GET" action="{{ route('posts.index') }}">
                     <div class="relative mt-1 flex items-center">
-                        <select name="category"
-                            class="block w-full rounded-md border-gray-300 pr-12 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    {{ $category->id === (int) request()->get('category') ? 'selected' : '' }}>
-                                    {{ $category->name }}</option>
-                            @endforeach
-                        </select>
+                        <x-categories />
                         <input type="text" value="{{ request()->get('search', '') }}" name="search" id="search"
                             class="block w-full rounded-md border-gray-300 pr-12 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                         <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
