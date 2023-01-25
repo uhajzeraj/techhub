@@ -44,6 +44,14 @@ final class PostsController
             'comments.author',
         ]);
 
+        // comments.author can also be written as:
+        // 
+        // $post->load([
+        //     'comments' => function ($query) {
+        //         $query->with('author');
+        //     },
+        // ]);
+
         return view('posts.show', [
             'post' => $post,
         ]);
