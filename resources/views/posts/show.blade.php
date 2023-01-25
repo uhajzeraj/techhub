@@ -21,6 +21,12 @@
     </a>
 
     <div class="max-w-xl m-auto">
+        <div>
+            @foreach ($post->comments as $comment)
+                <div>{{ $comment->content }}, by {{ $comment->author->name }}</div>
+            @endforeach
+        </div>
+
         <form method="POST" action="{{ route('post-comments.store', $post->id) }}">
             @csrf
             <div>
