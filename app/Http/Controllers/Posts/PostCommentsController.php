@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Posts;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Cache\RedisTaggedCache;
 use Illuminate\Http\Request;
@@ -20,6 +21,15 @@ final class PostCommentsController
             'author_id' => $request->user()->id,
             ...$data,
         ]);
+
+        // The statement above does the same thing as the commented one below
+
+        // Comment::create([
+        //     ...$data,
+        //     'target_type' => 'post',
+        //     'target_id' => $post->id,
+        //     'author_id' => $request->user()->id,
+        // ]);
 
         return redirect()
             ->back()
