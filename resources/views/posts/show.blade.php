@@ -21,10 +21,33 @@
     </a>
 
     <div class="max-w-xl m-auto">
-        <div>
-            @foreach ($post->comments as $comment)
-                <div>{{ $comment->content }}, by {{ $comment->author->name }}</div>
-            @endforeach
+        <div class="bg-white">
+            <div>
+                <h2 id="reviews-heading" class="sr-only">Comments</h2>
+
+                @foreach ($post->comments as $comment)
+                    <div class="space-y-10">
+                        <div class="flex flex-col sm:flex-row">
+                            <div class="order-2 mt-6 sm:mt-0 sm:ml-16">
+                                <p class="sr-only">5 out of 5 stars</p>
+
+                                <div class="mt-3 space-y-6 text-sm text-gray-600">
+                                    <p>{{ $comment->content }}</p>
+                                </div>
+                            </div>
+
+                            <div class="order-1 flex items-center sm:flex-col sm:items-start">
+                                <img src="https://source.unsplash.com/random?sig={{ $comment->author->id }}&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80"
+                                    alt="{{ $comment->author->name }}" class="h-12 w-12 rounded-full">
+
+                                <div class="ml-4 sm:ml-0 sm:mt-4">
+                                    <p class="text-sm font-medium text-gray-900">{{ $comment->author->name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
 
         <form method="POST" action="{{ route('post-comments.store', $post->id) }}">
