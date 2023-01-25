@@ -53,4 +53,14 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->allPosts()->whereNotNull('published_at');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'author_id');
+    }
+
+    public function receivedComments()
+    {
+        return $this->morphMany(Comment::class, 'target');
+    }
 }
