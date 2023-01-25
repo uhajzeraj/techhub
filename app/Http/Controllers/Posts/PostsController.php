@@ -38,7 +38,11 @@ final class PostsController
 
     public function show(Post $post)
     {
-        $post->load(['author', 'tags']);
+        $post->load([
+            'author',
+            'tags',
+            'comments.author',
+        ]);
 
         return view('posts.show', [
             'post' => $post,
