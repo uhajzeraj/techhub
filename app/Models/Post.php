@@ -29,6 +29,11 @@ final class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'target');
+    }
+
     public function scopeWherePublished($query)
     {
         $query->whereNotNull('published_at');
