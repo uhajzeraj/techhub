@@ -9,6 +9,7 @@ final class PostsController
 {
     public function index()
     {
+        /** @var Collection $posts */
         $posts = Post::query()
             ->wherePublished()
             ->get();
