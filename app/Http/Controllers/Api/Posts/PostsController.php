@@ -24,6 +24,7 @@ final class PostsController
                 'created_at' => $post->created_at,
             ]
         );
+
         return response()->json($postResponse);
     }
 }
