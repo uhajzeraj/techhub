@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Posts\PostsController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/posts', [PostsController::class, 'index']);
+
+// This is insecure, do not use it in production without checking credentials
+Route::get('login', function () {
+    /** @var User $user */
+    $user = User::first();
+
+    $token = $user->createToken("Urani's iPhone - iPhone 12");
+
+    return ['token' => $token->plainTextToken];
+});
