@@ -8,8 +8,10 @@ final class PostsController
 {
     public function index()
     {
-        return Post::query()
-            ->wherePublished()
-            ->get();
+        return response()->json(
+            Post::query()
+                ->wherePublished()
+                ->get()
+        );
     }
 }
