@@ -19,7 +19,7 @@ final class Bar
         return $this->baz;
     }
 
-    public function getBat(): Bat
+    public function getBat(): BatInterface
     {
         return $this->bat;
     }
