@@ -7,11 +7,17 @@ namespace App\Http\Controllers\Posts;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Services\Foo;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 final class PostsController
 {
+    public function __construct(
+        private readonly Foo $foo,
+    ) {
+    }
+
     public function index(Request $request)
     {
         $posts = Post::with(['author', 'tags', 'category'])
