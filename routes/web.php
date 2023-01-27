@@ -5,6 +5,7 @@ use App\Http\Controllers\Authors\GetSingleAuthorController;
 use App\Http\Controllers\Posts\PostCommentsController;
 use App\Http\Controllers\Posts\PostsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterToNewsletterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/posts');
+
+Route::get('/newsletter', RegisterToNewsletterController::class);
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
