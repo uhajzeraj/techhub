@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(Baz::class, fn () => new Baz('123456789'));
 
+        // BatOne can be replaced with BatTwo, or any other class
+        // that implementes the BatInterface interface
         $this->app->singleton(BatInterface::class, fn () => new BatOne());
     }
 
