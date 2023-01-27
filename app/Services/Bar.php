@@ -6,9 +6,9 @@ final class Bar
 {
     private Baz $baz;
 
-    private Bat $bat;
+    private BatInterface $bat;
 
-    public function __construct(Baz $baz, Bat $bat)
+    public function __construct(Baz $baz, BatInterface $bat)
     {
         $this->baz = $baz;
         $this->bat = $bat;
