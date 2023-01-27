@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Services\BatInterface;
+use App\Services\BatOne;
+use App\Services\BatTwo;
 use App\Services\Baz;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -19,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(Baz::class, fn () => new Baz('123456789'));
+
+        $this->app->singleton(BatInterface::class, fn () => new BatOne());
     }
 
     /**
