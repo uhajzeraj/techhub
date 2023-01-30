@@ -13,5 +13,12 @@ final class MailchimpNewsletterService implements NewsletterService
 
     public function register(string $email): void
     {
+        $this->mailchimpClient->lists->addListMember(
+            'c849347a8f',
+            [
+                'email_address' => $email,
+                'status' => 'subscribed',
+            ],
+        );
     }
 }
