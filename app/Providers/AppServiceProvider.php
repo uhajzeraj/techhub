@@ -35,6 +35,14 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
+            MailchimpNewsletterService::class,
+            fn () => new MailchimpNewsletterService(
+                $this->app->get(ApiClient::class),
+                config('mailchimp.audience_list_id'),
+            ),
+        );
+
+        $this->app->singleton(
             ApiClient::class,
             function () {
                 $apiClient = new ApiClient();

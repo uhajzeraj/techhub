@@ -8,13 +8,14 @@ final class MailchimpNewsletterService implements NewsletterService
 {
     public function __construct(
         private readonly ApiClient $mailchimpClient,
+        private readonly string $audienceListId,
     ) {
     }
 
     public function register(string $email): void
     {
         $this->mailchimpClient->lists->addListMember(
-            config('mailchimp.audience_list_id'),
+            $this->audienceListId,
             [
                 'email_address' => $email,
                 'status' => 'subscribed',
