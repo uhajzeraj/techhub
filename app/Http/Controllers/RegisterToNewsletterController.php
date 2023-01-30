@@ -14,9 +14,9 @@ final class RegisterToNewsletterController
 
     public function __invoke(Request $request)
     {
-        $data = [
-            'email' => 'uran@duck.com',
-        ];
+        $data = $request->validate([
+            'email' => ['required', 'email'],
+        ]);
 
         $this->newsletterService->register($data['email']);
 
