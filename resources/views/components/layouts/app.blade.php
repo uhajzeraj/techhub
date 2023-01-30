@@ -19,6 +19,8 @@
     {{ $slot }}
 
     <x-flash-message />
+
+    <x-layouts.newsletter />
 </body>
 
 </html>
