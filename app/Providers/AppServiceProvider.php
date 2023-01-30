@@ -6,7 +6,6 @@ use App\Models\Post;
 use App\Models\User;
 use App\Services\BatInterface;
 use App\Services\BatOne;
-use App\Services\BatTwo;
 use App\Services\Baz;
 use App\Services\Newsletters\MailchimpNewsletterService;
 use App\Services\Newsletters\NewsletterService;
