@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/posts');
 
-Route::get('/newsletter', RegisterToNewsletterController::class);
+Route::post('/newsletter', RegisterToNewsletterController::class);
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
