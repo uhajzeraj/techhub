@@ -6,6 +6,7 @@
         <p class="inline text-3xl font-bold tracking-tight text-indigo-600 sm:block sm:text-4xl">Sign up for our
             newsletter.</p>
         <form class="mt-8 sm:flex" method="POST" action="/newsletter">
+            @csrf
             <label for="email-address" class="sr-only">Email address</label>
             <input id="email-address" name="email" type="email" autocomplete="email" required
                 class="w-full rounded-md border-gray-300 px-5 py-3 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs"
