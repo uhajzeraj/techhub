@@ -6,6 +6,7 @@ use App\Http\Controllers\Posts\PostCommentsController;
 use App\Http\Controllers\Posts\PostsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterToNewsletterController;
+use App\Http\Controllers\UpdateAvatarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::put('/profile/update-avatar', UpdateAvatarController::class)->name('profile.update-avatar');
 
     Route::post('/posts/{post}/comments', [PostCommentsController::class, 'store'])->name('post-comments.store');
 });
