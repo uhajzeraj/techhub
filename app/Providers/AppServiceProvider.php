@@ -40,11 +40,9 @@ class AppServiceProvider extends ServiceProvider
             function () {
                 $apiClient = new ApiClient();
 
-                // Don't do this, this is a bad practice
-                // API keys, tokens, passwords should be stored in .env and never commited
                 $apiClient->setConfig([
-                    'apiKey' => '3ceec5dbbe7324f7624d3375d48afc87-us21',
-                    'server' => 'us21'
+                    'apiKey' => config('mailchimp.api_key'),
+                    'server' => config('mailchimp.server'),
                 ]);
 
                 return $apiClient;
