@@ -8,8 +8,14 @@ final class UpdateAvatarController
 {
     public function __invoke(Request $request)
     {
-        // Validate the request
-        // Store the image on a permanent location and give it a unique name
-        // In database, store the name of the file
+        $request->validate([
+            'avatar' => ['required', 'image', 'max:1024'],
+        ]);
+
+        $filename = $request->file('avatar')->store('avatars', 'public');
+
+        $request->user()->update([
+            'avatar' => $filename,
+        ]);
     }
 }
