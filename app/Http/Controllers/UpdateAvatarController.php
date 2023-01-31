@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 final class UpdateAvatarController
 {
     public function __construct(
-        private readonly string $diskName,
+        private readonly Filesystem $filesystem,
     ) {
     }
 
@@ -20,13 +20,13 @@ final class UpdateAvatarController
 
         $oldFilename = $request->user()->avatar;
 
-        $filename = $request->file('avatar')->store('avatars', $this->diskName);
+        $filename = $request->file('avatar')->store('avatars', 'public');
 
         $request->user()->update([
             'avatar' => $filename,
         ]);
 
-        Storage::disk($this->diskName)->delete($oldFilename);
+        $this->filesystem->delete($oldFilename);
 
         return redirect()
             ->back()

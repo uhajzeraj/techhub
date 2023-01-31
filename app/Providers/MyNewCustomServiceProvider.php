@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\UpdateAvatarController;
 use App\Services\Mat;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 
 final class MyNewCustomServiceProvider extends ServiceProvider
@@ -14,9 +15,6 @@ final class MyNewCustomServiceProvider extends ServiceProvider
             return new Mat([1, 2, 3, 4, 5]);
         });
 
-        // Not really scalable; What if we have 100 controllers that use the disk?
-        $this->app->singleton(UpdateAvatarController::class, function () {
-            return new UpdateAvatarController('public');
-        });
+        $this->app->singleton(Filesystem::class, fn () => Storage::disk('public'));
     }
 }
