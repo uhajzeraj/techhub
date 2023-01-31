@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Storage;
 
 final class UpdateAvatarController
 {
+    public function __construct(
+        private readonly string $diskName,
+    ) {
+    }
+
     public function __invoke(Request $request)
     {
         $request->validate([
@@ -15,13 +20,13 @@ final class UpdateAvatarController
 
         $oldFilename = $request->user()->avatar;
 
-        $filename = $request->file('avatar')->store('avatars', 'public');
+        $filename = $request->file('avatar')->store('avatars', $this->diskName);
 
         $request->user()->update([
             'avatar' => $filename,
         ]);
 
-        Storage::disk('public')->delete($oldFilename);
+        Storage::disk($this->diskName)->delete($oldFilename);
 
         return redirect()
             ->back()
