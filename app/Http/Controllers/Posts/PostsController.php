@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\Foo;
+use App\Services\Mat;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -15,6 +16,7 @@ final class PostsController
 {
     public function __construct(
         private readonly Foo $foo,
+        private readonly Mat $mat,
     ) {
     }
 
