@@ -17,5 +17,9 @@ final class UpdateAvatarController
         $request->user()->update([
             'avatar' => $filename,
         ]);
+
+        return redirect()
+            ->back()
+            ->with('status', 'avatar-updated');
     }
 }
