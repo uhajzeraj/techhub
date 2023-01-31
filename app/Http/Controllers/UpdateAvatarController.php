@@ -20,7 +20,7 @@ final class UpdateAvatarController
 
         $oldFilename = $request->user()->avatar;
 
-        $filename = $request->file('avatar')->store('avatars', 'public');
+        $filename = $this->filesystem->putFile('avatars', $request->file('avatar'));
 
         $request->user()->update([
             'avatar' => $filename,
