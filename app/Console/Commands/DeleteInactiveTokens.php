@@ -24,6 +24,8 @@ final class DeleteInactiveTokens extends Command
             })
             ->delete();
 
+        $this->info("Deleted {$numberOfTokensDeleted} inactive tokens");
+
         return Command::SUCCESS;
     }
 }
