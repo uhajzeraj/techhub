@@ -13,6 +13,10 @@ final class DeleteInactiveTokens extends Command
 
     public function handle()
     {
+        if (!$this->confirm('Are you sure you want to continue?')) {
+            return Command::SUCCESS;
+        }
+
         $numberOfTokensDeleted = PersonalAccessToken::query()
             ->where(function ($query) {
                 $query->whereNull('last_used_at')
