@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\Request;
 
 final class UpdateAvatarController
 {
     public function __construct(
-        private readonly Filesystem $filesystem,
+        private readonly FilesystemAdapter $filesystem,
     ) {
     }
 
