@@ -1,12 +1,12 @@
 <x-mail::message>
-    # Introduction
+# New post added
 
-    Your post was created.
+Your post with title `{{ $post->title }}` was created.
 
-    <x-mail::button :url="''">
-        Check it out
-    </x-mail::button>
+<x-mail::button :url="route('posts.show', $post->slug)">
+Check it out
+</x-mail::button>
 
-    Thanks,<br>
-    {{ config('app.name') }}
+Thanks,
+{{ config('app.name') }}
 </x-mail::message>
