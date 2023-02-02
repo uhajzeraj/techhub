@@ -1,12 +1,12 @@
 <x-mail::message>
-# Introduction
+    # Introduction
 
-The body of your message.
+    Your post was created.
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+    <x-mail::button :url="''">
+        Check it out
+    </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+    Thanks,<br>
+    {{ config('app.name') }}
 </x-mail::message>
