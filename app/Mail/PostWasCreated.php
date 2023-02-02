@@ -43,7 +43,7 @@ final class PostWasCreated extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'view.emails.post-was-created',
+            markdown: 'emails.post-was-created',
         );
     }
 
