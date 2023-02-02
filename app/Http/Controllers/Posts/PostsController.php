@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Posts;
 
+use App\Mail\PostWasCreated;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\Foo;
 use App\Services\Mat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 final class PostsController
@@ -79,7 +81,10 @@ final class PostsController
             'author_id' => User::where('role', 'author')->first()->id,
         ]);
 
-        Post::create($data);
+        $post = Post::create($data);
+
+        Mail::to($post->author->email)
+            ->send(new PostWasCreated($post));
 
         return redirect()
             ->route('posts.index')
