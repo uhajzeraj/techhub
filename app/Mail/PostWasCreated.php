@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,9 @@ final class PostWasCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        private readonly Post $post,
+    ) {
     }
 
     /**
@@ -44,6 +40,9 @@ final class PostWasCreated extends Mailable
     {
         return new Content(
             markdown: 'emails.post-was-created',
+            with: [
+                'post' => $this->post,
+            ],
         );
     }
 
