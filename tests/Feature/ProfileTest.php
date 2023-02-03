@@ -25,8 +25,10 @@ class ProfileTest extends TestCase
     /** @test */
     public function profile_information_can_be_updated(): void
     {
+        // Arrange
         $user = User::factory()->create(['name' => 'Filan Fisteku']);
 
+        // Act
         $response = $this
             ->actingAs($user)
             ->patch('/profile', [
@@ -34,6 +36,7 @@ class ProfileTest extends TestCase
                 'email' => 'test@example.com',
             ]);
 
+        // Assert
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
