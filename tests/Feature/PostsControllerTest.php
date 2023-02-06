@@ -52,6 +52,11 @@ final class PostsControllerTest extends TestCase
 
         $post = Post::factory()->create();
 
+        $this->assertDatabaseCount('posts', 1)
+            ->assertDatabaseHas('posts', [
+                'id' => $post->id,
+            ]);
+
         // Act
         $response = $this->delete("/posts/{$post->id}");
 
