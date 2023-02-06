@@ -28,6 +28,7 @@ Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
 Route::get('/posts/{post:slug}', [PostsController::class, 'show'])->name('posts.show');
+Route::delete('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
 
 Route::get('authors', GetAuthorsController::class)->name('authors.index');
 Route::get('authors/{author:username}', GetSingleAuthorController::class)->name('authors.show');

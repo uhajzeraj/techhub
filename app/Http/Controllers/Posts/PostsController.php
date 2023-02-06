@@ -92,4 +92,13 @@ final class PostsController
             ->route('posts.index')
             ->with('success', 'Post was successfully created!');
     }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect()
+            ->route('posts.index')
+            ->with('success', 'Post was deleted!');
+    }
 }
