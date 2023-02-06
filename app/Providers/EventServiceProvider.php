@@ -17,7 +17,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        // Registered::class is equivalet with 'Illuminate\Auth\Events\Registered'
+        // Registered::class is equivalent with 'Illuminate\Auth\Events\Registered'
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
