@@ -81,6 +81,7 @@ final class PostsControllerTest extends TestCase
             ->create(['username' => 'filan-fisteku']);
 
         Post::factory(2)
+            ->published()
             ->state(new Sequence(
                 ['title' => 'My First Post'],
                 ['title' => 'My Second Post']
