@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Posts;
 
-use App\Mail\PostWasCreated;
+use App\Events\PostWasCreatedEvent;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -12,7 +12,6 @@ use App\Services\Foo;
 use App\Services\Mat;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 final class PostsController
@@ -85,8 +84,9 @@ final class PostsController
 
         $post = Post::create($data);
 
-        Mail::to($post->author->email)
-            ->send(new PostWasCreated($post));
+        $this->eventDispatcher->dispatch(
+            new PostWasCreatedEvent($post->id),
+        );
 
         return redirect()
             ->route('posts.index')
