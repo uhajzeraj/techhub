@@ -73,7 +73,7 @@ final class PostsControllerTest extends TestCase
     /**
      * @test
      */
-    public function itCanListPosts(): void
+    public function itCanListPublishedPosts(): void
     {
         // Arrange
         $author = User::factory()
@@ -98,6 +98,33 @@ final class PostsControllerTest extends TestCase
                 'My First Post',
                 'My Second Post',
                 '/authors/filan-fisteku',
+            ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itDoesntListUnpublishedPosts(): void
+    {
+        // Arrange
+        $author = User::factory()->author()->create();
+
+        Post::factory(2)
+            ->state(new Sequence(
+                ['title' => 'My First Post'],
+                ['title' => 'My Second Post']
+            ))
+            ->create(['author_id' => $author->id]);
+
+        // Act
+        $response = $this->get('/posts');
+
+        // Assert
+        $response->assertOk()
+            ->assertViewIs('posts.index')
+            ->assertDontSee([
+                'My First Post',
+                'My Second Post',
             ]);
     }
 }
