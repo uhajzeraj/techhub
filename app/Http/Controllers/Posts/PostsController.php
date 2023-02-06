@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Services\Foo;
 use App\Services\Mat;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
@@ -19,6 +20,7 @@ final class PostsController
     public function __construct(
         private readonly Foo $foo,
         private readonly Mat $mat,
+        private readonly Dispatcher $eventDispatcher,
     ) {
     }
 
