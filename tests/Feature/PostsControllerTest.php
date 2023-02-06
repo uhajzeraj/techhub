@@ -75,11 +75,24 @@ final class PostsControllerTest extends TestCase
      */
     public function itCanListPosts(): void
     {
+        // Arrange
+        $author = User::factory()->author()->create();
         [$post1, $post2] = Post::factory(2)
             ->state(new Sequence(
                 ['title' => 'My First Post'],
                 ['title' => 'My Second Post']
             ))
-            ->create();
+            ->create(['author_id' => $author->id]);
+
+        // Act
+        $response = $this->get('/posts');
+
+        // Assert
+        $response->assertOk()
+            ->assertViewIs('posts.index')
+            ->assertSee([
+                'My First Post',
+                'My Second Post',
+            ]);
     }
 }
