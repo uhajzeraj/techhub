@@ -31,5 +31,13 @@ final class PostsControllerTest extends TestCase
 
         // Assert
         $response->assertRedirect('/posts');
+
+        $this->assertDatabaseCount('posts', 1)
+            ->assertDatabaseHas('posts', [
+                'author_id' => $author->id,
+                'title' => 'My post title',
+                'excerpt' => 'My post excerpt',
+                'content' => 'This is my content and it is longer than 20 characters',
+            ]);
     }
 }
