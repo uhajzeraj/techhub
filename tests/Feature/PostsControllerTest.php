@@ -68,4 +68,11 @@ final class PostsControllerTest extends TestCase
                 'id' => $post->id,
             ]);
     }
+
+    /**
+     * @test
+     */
+    public function itCanListPosts(): void
+    {
+    }
 }
