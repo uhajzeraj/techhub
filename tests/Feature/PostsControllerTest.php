@@ -76,8 +76,11 @@ final class PostsControllerTest extends TestCase
     public function itCanListPosts(): void
     {
         // Arrange
-        $author = User::factory()->author()->create();
-        [$post1, $post2] = Post::factory(2)
+        $author = User::factory()
+            ->author()
+            ->create(['username' => 'filan-fisteku']);
+
+        Post::factory(2)
             ->state(new Sequence(
                 ['title' => 'My First Post'],
                 ['title' => 'My Second Post']
@@ -93,6 +96,7 @@ final class PostsControllerTest extends TestCase
             ->assertSee([
                 'My First Post',
                 'My Second Post',
+                '/authors/filan-fisteku',
             ]);
     }
 }
