@@ -15,5 +15,7 @@ final class PostsControllerTest extends TestCase
      */
     public function itCanCreateANewPost(): void
     {
+        // Arrange
+        $this->withoutExceptionHandling();
     }
 }
