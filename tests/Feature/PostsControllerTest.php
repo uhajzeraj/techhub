@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -74,5 +75,11 @@ final class PostsControllerTest extends TestCase
      */
     public function itCanListPosts(): void
     {
+        [$post1, $post2] = Post::factory(2)
+            ->state(new Sequence(
+                ['title' => 'My First Post'],
+                ['title' => 'My Second Post']
+            ))
+            ->create();
     }
 }
