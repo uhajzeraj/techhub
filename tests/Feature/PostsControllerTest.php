@@ -127,4 +127,37 @@ final class PostsControllerTest extends TestCase
                 'My Second Post',
             ]);
     }
+
+    /**
+     * @test
+     */
+    public function itFiltersBySearchTerm(): void
+    {
+        // Arrange
+        $author = User::factory()->author()->create(['name' => 'Filan Fisteku the III']);
+        $category = Category::factory()->create();
+
+        Post::factory(4)
+            ->published()
+            ->state(new Sequence(
+                ['slug' => 'post-1', 'category_id' => $category->id, 'title' => 'This title contains filan fisteku in it'],
+                ['slug' => 'post-2', 'category_id' => $category->id, 'content' => 'This content contains filan fisteku in it as well'],
+                ['slug' => 'post-3', 'category_id' => $category->id, 'author_id' => $author->id],
+                ['slug' => 'post-4', 'category_id' => $category->id],
+            ))
+            ->create();
+
+        // Act
+        $response = $this->get('/posts?search=filan%20fisteku');
+
+        // Assert
+        $response->assertOk()
+            ->assertViewIs('posts.index')
+            ->assertSee([
+                '/posts/post-1',
+                '/posts/post-2',
+                '/posts/post-3',
+            ])
+            ->assertDontSee('/posts/post-4');
+    }
 }
