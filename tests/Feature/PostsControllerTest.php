@@ -183,4 +183,49 @@ final class PostsControllerTest extends TestCase
             ->assertSee('/posts/post-1')
             ->assertDontSee('/posts/post-2');
     }
+
+    /**
+     * @test
+     */
+    public function itPaginatesPosts(): void
+    {
+        $category = Category::factory()->create();
+
+        Post::factory(6)
+            ->published()
+            ->state(new Sequence(
+                ['slug' => 'post-1'],
+                ['slug' => 'post-2'],
+                ['slug' => 'post-3'],
+                ['slug' => 'post-4'],
+                ['slug' => 'post-5'],
+                ['slug' => 'post-6'],
+            ))
+            ->create(['category_id' => $category->id]);
+
+        // Sorted DESC by id
+        $this->get('/posts?page=1')
+            ->assertOk()
+            ->assertViewIs('posts.index')
+            ->assertSee([
+                '/posts/post-6',
+                '/posts/post-5',
+                '/posts/post-4',
+                '/posts/post-3',
+                '/posts/post-2',
+            ])
+            ->assertDontSee('/posts/post-1');
+
+        $this->get('/posts?page=2')
+            ->assertOk()
+            ->assertViewIs('posts.index')
+            ->assertSee('/posts/post-1')
+            ->assertDontSee([
+                '/posts/post-6',
+                '/posts/post-5',
+                '/posts/post-4',
+                '/posts/post-3',
+                '/posts/post-2',
+            ]);
+    }
 }
