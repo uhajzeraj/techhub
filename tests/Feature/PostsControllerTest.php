@@ -140,12 +140,12 @@ final class PostsControllerTest extends TestCase
         Post::factory(4)
             ->published()
             ->state(new Sequence(
-                ['slug' => 'post-1', 'category_id' => $category->id, 'title' => 'This title contains filan fisteku in it'],
-                ['slug' => 'post-2', 'category_id' => $category->id, 'content' => 'This content contains filan fisteku in it as well'],
-                ['slug' => 'post-3', 'category_id' => $category->id, 'author_id' => $author->id],
-                ['slug' => 'post-4', 'category_id' => $category->id],
+                ['slug' => 'post-1', 'title' => 'This title contains filan fisteku in it'],
+                ['slug' => 'post-2', 'content' => 'This content contains filan fisteku in it as well'],
+                ['slug' => 'post-3', 'author_id' => $author->id],
+                ['slug' => 'post-4'],
             ))
-            ->create();
+            ->create(['category_id' => $category->id]);
 
         // Act
         $response = $this->get('/posts?search=filan%20fisteku');
