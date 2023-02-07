@@ -19,19 +19,19 @@ final class CommentFactory extends Factory
         ];
     }
 
-    public function forPost(): static
+    public function forPost(?Post $post = null): static
     {
         return $this->state(fn (array $attributes) => [
             'target_type' => 'post',
-            'target_id' => Post::factory(),
+            'target_id' => $post !== null ? $post->id : Post::factory(),
         ]);
     }
 
-    public function forAuthor(): static
+    public function forAuthor(?User $user = null): static
     {
         return $this->state(fn (array $attributes) => [
             'target_type' => 'author',
-            'target_id' => User::factory(),
+            'target_id' => $user !== null ? $user->id : User::factory(),
         ]);
     }
 }
