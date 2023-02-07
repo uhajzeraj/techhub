@@ -160,4 +160,27 @@ final class PostsControllerTest extends TestCase
             ])
             ->assertDontSee('/posts/post-4');
     }
+
+    /**
+     * @test
+     */
+    public function itFiltersByCategory(): void
+    {
+        [$category1, $category2] = Category::factory(2)->create();
+
+        Post::factory()
+            ->published()
+            ->state(new Sequence(
+                ['slug' => 'post-1', 'category_id' => $category1->id],
+                ['slug' => 'post-2', 'category_id' => $category2->id],
+            ))
+            ->create();
+
+        $response = $this->get("/posts?category={$category1->id}");
+
+        $response->assertOk()
+            ->assertViewIs('posts.index')
+            ->assertSee('/posts/post-1')
+            ->assertDontSee('/posts/post-2');
+    }
 }
