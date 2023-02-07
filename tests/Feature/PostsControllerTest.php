@@ -168,7 +168,7 @@ final class PostsControllerTest extends TestCase
     {
         [$category1, $category2] = Category::factory(2)->create();
 
-        Post::factory()
+        Post::factory(2)
             ->published()
             ->state(new Sequence(
                 ['slug' => 'post-1', 'category_id' => $category1->id],
