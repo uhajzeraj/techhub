@@ -9,6 +9,13 @@ use Tests\TestCase;
 
 final class LoginControllerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Str::createRandomStringsUsing(fn ($length) => substr('9lm5kjC9laSDGD4B66dxfx1hw9wb4GtB2oS4399B', 0, $length));
+    }
+
     /**
      * @test
      */
@@ -16,8 +23,6 @@ final class LoginControllerTest extends TestCase
     {
         // Arrange
         User::factory()->create();
-
-        Str::createRandomStringsUsing(fn ($length) => substr('9lm5kjC9laSDGD4B66dxfx1hw9wb4GtB2oS4399B', 0, $length));
 
         // Act
         $response = $this->get('api/login');
