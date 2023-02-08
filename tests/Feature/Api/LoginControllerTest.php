@@ -14,5 +14,9 @@ final class LoginControllerTest extends TestCase
      */
     public function itReturnsBearerTokenOnLogin(): void
     {
+        // Arrange
+        User::factory()->create();
+
+        Str::createRandomStringsUsing(fn ($length) => substr('9lm5kjC9laSDGD4B66dxfx1hw9wb4GtB2oS4399B', 0, $length));
     }
 }
