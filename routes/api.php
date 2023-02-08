@@ -25,7 +25,7 @@ Route::get('/posts', [PostsController::class, 'index']);
 // This is insecure, do not use it in production without checking credentials
 Route::get('login', function () {
     /** @var User $user */
-    $user = User::first();
+    $user = User::firstOrFail();
 
     $token = $user->createToken("Urani's iPhone - iPhone 12");
 
