@@ -42,4 +42,18 @@ final class PostsControllerTest extends TestCase
                     ))
             );
     }
+
+    /**
+     * @test
+     */
+    public function itDoesntReturnUnpublishedPosts(): void
+    {
+        Post::factory(2)->create();
+
+        $this->get('api/posts')
+            ->assertOk()
+            ->assertJson(
+                fn (AssertableJson $json) => $json->has('data', 0),
+            );
+    }
 }
