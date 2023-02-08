@@ -29,5 +29,5 @@ Route::get('login', function () {
 
     $token = $user->createToken("Urani's iPhone - iPhone 12");
 
-    return ['token' => $token->plainTextToken];
+    return ['token' => substr($token->plainTextToken, strpos($token->plainTextToken, '|') + 1)];
 });
