@@ -22,22 +22,24 @@ final class PostsControllerTest extends TestCase
 
         $response = $this->get('api/posts');
 
-        $response->assertJson(
-            fn (AssertableJson $json) => $json
-                ->has('data', 2)
-                ->where('data.0.id', $post1->id)
-                ->where('data.0.author_id', $author->id)
-                ->where('data.1.id', $post2->id)
-                ->where('data.1.author_id', $author->id)
-                ->has('data', fn (AssertableJson $json) => $json->each(
-                    fn (AssertableJson $json) => $json->whereAllType([
-                        'id' => 'integer',
-                        'author_id' => 'integer',
-                        'title' => 'string',
-                        'content' => 'string',
-                        'created_at' => 'string',
-                    ])
-                ))
-        );
+        $response
+            ->assertOk()
+            ->assertJson(
+                fn (AssertableJson $json) => $json
+                    ->has('data', 2)
+                    ->where('data.0.id', $post1->id)
+                    ->where('data.0.author_id', $author->id)
+                    ->where('data.1.id', $post2->id)
+                    ->where('data.1.author_id', $author->id)
+                    ->has('data', fn (AssertableJson $json) => $json->each(
+                        fn (AssertableJson $json) => $json->whereAllType([
+                            'id' => 'integer',
+                            'author_id' => 'integer',
+                            'title' => 'string',
+                            'content' => 'string',
+                            'created_at' => 'string',
+                        ])
+                    ))
+            );
     }
 }
