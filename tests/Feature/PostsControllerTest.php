@@ -2,16 +2,25 @@
 
 namespace Tests\Feature;
 
+use App\Events\PostWasCreatedEvent;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 final class PostsControllerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Event::fake();
+    }
+
     /**
      * @test
      */
@@ -41,6 +50,8 @@ final class PostsControllerTest extends TestCase
                 'excerpt' => 'My post excerpt',
                 'content' => 'This is my content and it is longer than 20 characters',
             ]);
+
+        Event::assertDispatched(PostWasCreatedEvent::class);
     }
 
     /**
