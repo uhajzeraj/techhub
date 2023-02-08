@@ -51,7 +51,9 @@ final class PostsControllerTest extends TestCase
                 'content' => 'This is my content and it is longer than 20 characters',
             ]);
 
-        Event::assertDispatched(PostWasCreatedEvent::class);
+        Event::assertDispatched(function (PostWasCreatedEvent $event) {
+            return $event->postId === Post::first()->id;
+        });
     }
 
     /**
