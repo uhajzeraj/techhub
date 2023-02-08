@@ -25,6 +25,8 @@ final class PostsController
             ]
         );
 
-        return response()->json($postResponse);
+        return response()->json([
+            'data' => $postResponse,
+        ]);
     }
 }
